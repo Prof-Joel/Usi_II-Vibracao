@@ -1,0 +1,29 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+from os.path import dirname, join as pjoin
+import scipy.io as sio
+
+dir='/home/joel/Dados/0 - UDESC/Aulas/Usi_II_Otim_Usin/Aulas/Exemplo_milling_github/dados/archive/mill'
+filename='mill.mat'
+
+data_dir = pjoin(dirname(sio.__file__), 'matlab', 'tests', 'data')
+mat_fname = pjoin(dir, filename)
+
+mat_fname
+mat_contents = sio.loadmat(mat_fname)
+sorted(mat_contents.keys())
+
+teststruct = mat_contents['mill']
+teststruct.dtype
+
+teststruct2=teststruct['vib_table']
+teststruct2.dtype
+teststruct2.shape
+
+vib_1=teststruct2[0,1]
+import matplotlib.pyplot as plt
+
+plt.title("Vibração")
+plt.plot(vib_1)
+plt.show()
